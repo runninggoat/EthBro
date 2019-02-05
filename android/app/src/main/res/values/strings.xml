@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">N55Ylq5JQWDH0rl3HMNm3QC4EqPW066ed9de-81c3-4c7e-ac8c-f292507db5a6</string>
     <string name="app_name">EthBro</string>
 </resources>

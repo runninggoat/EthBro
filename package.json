@@ -13,6 +13,7 @@
     "dva-core": "^1.4.0",
     "react": "16.6.3",
     "react-native": "0.58.3",
+    "react-native-code-push": "^5.5.2",
     "react-native-gesture-handler": "^1.0.15",
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
