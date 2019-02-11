@@ -51,3 +51,20 @@ export const ethBlance = async params => {
   }
   return resp
 }
+
+export const ethLastPrice = async params => {
+  // console.log('send ethBlance request...', params[0], params[1])
+  let url = createGetUrl(host[params[0]], {
+    module: 'stats',
+    action: 'ethprice',
+    apikey: apiKey,
+  })
+  let resp = null
+  try {
+    resp = await fetch(url)
+    resp = await resp.json()
+  } catch (e) {
+    throw e
+  }
+  return resp
+}

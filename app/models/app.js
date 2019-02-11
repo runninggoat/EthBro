@@ -4,6 +4,7 @@ import {
   ROPSTEN,
   ethBlockNumber,
   ethBlance,
+  ethLastPrice,
 } from '../services/etherscan'
 import ImportWallet from '../containers/importWallet';
 
@@ -13,6 +14,7 @@ const defaultAppState = {
   activeWallet: '',
   balances: {},
   ethUSDPrice: 1,
+  ethUSDLastTime: 0,
 }
 
 export default {
@@ -86,6 +88,17 @@ export default {
       delete balances[address]
       const addresses = Object.keys(wallets)
       yield put({ type: 'updateState', payload: { wallets, balances, activeWallet: addresses[0] } })
+    },
+    *updateUSDPrice(action, { select, put, call }) {
+      const { network } = yield select(state => state.app)
+      const resp = yield call(ethLastPrice, [network])
+      // console.log('resp', resp)
+      if (resp.message === 'OK') {
+        let { ethusd = 1, ethusd_timestamp = new Date().getTime() } = resp.result
+        yield put({ type: 'updateState', payload: { ethUSDPrice: ethusd, ethUSDLastTime: ethusd_timestamp } })
+      } else {
+        console.log('updatePrice response', resp)
+      }
     },
   },
 }

@@ -38,6 +38,7 @@ class WalletHome extends Component {
 
   _updateBalance = async () => {
     const { dispatch } = this.props
+    dispatch({ type: 'app/updateUSDPrice' })
     await dispatch({ type: 'app/updateBalance' })
     console.log('balance update finish...')
     this.forceUpdate()
