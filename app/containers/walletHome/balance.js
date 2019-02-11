@@ -38,9 +38,9 @@ class Balance extends Component {
         </Text>
         <View style={styles.addressRow}>
           <Text style={{ fontSize: 16, marginRight: 15, flex: 1 }}>
-            {'地址'}
+            {'地址:'}
           </Text>
-          <Text style={{ fontSize: 16, flex: 8 }} numberOfLines={1} ellipsizeMode='middle'>
+          <Text style={{ fontSize: 16, flex: 5 }} numberOfLines={1} ellipsizeMode='middle'>
             {address}
           </Text>
           <Image source={qrCode} style={{ width: 24, height: 24, marginLeft: 15 }}/>
