@@ -73,7 +73,7 @@ class WalletHome extends Component {
     this.setState({ end: end + 10 })
   }
 
-  _renderTxList = ({ item }) => {
+  _renderTxListItem = ({ item }) => {
     const { activeWallet } = this.props.app
     const { value, from, to } = item
     if (!to) return null
@@ -115,7 +115,7 @@ class WalletHome extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Balance address={activeWallet} balance={balances[activeWallet]} ethUSDPrice={ethUSDPrice} navigation={navigation} usdPrice={ethUSDPrice} />
-        <FlatList data={txLists[activeWallet].slice(0, end)} keyExtractor={(item, index) => `${item.hash}-${index}`} renderItem={this._renderTxList} ItemSeparatorComponent={this._renderSeperator} onRefresh={this._onRefresh} refreshing={refreshing} onEndReachedThreshold={0.2} onEndReached={this._onEndReached} />
+        <FlatList data={txLists[activeWallet] ? txLists[activeWallet].slice(0, end) : []} keyExtractor={(item, index) => `${item.hash}-${index}`} renderItem={this._renderTxListItem} ItemSeparatorComponent={this._renderSeperator} onRefresh={this._onRefresh} refreshing={refreshing} onEndReachedThreshold={0.2} onEndReached={this._onEndReached} />
       </View>
     )
   }

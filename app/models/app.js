@@ -106,7 +106,7 @@ export default {
     *getTxList({ payload }, { select, put, call }) {
       const { forced = false } = payload
       const { network, activeWallet, txLists } = yield select(state => state.app)
-      if (!forced && txLists[activeWallet].length > 0) return
+      if (!forced && txLists[activeWallet] && txLists[activeWallet].length > 0) return
       console.log('get tx list ', activeWallet)
       const resp = yield call(txListForAddress, [network, activeWallet])
       // console.log('resp', resp)
