@@ -5,6 +5,7 @@ import {
   ethBlockNumber,
   ethBlance,
   ethLastPrice,
+  txListForAddress,
 } from '../services/etherscan'
 import ImportWallet from '../containers/importWallet';
 
@@ -13,6 +14,7 @@ const defaultAppState = {
   wallets: {},
   activeWallet: '',
   balances: {},
+  txLists: {},
   ethUSDPrice: 1,
   ethUSDLastTime: 0,
 }
@@ -71,11 +73,12 @@ export default {
     },
     *updateBalance(action, { select, put, call }) {
       const { network, activeWallet } = yield select(state => state.app)
+      console.log('updateBalance ', activeWallet)
       const resp = yield call(ethBlance, [network, activeWallet])
-      // console.log('resp', resp)
       let { balances } = yield select(state => state.app)
       if (resp.message === 'OK') {
         balances[activeWallet] = ethers.utils.formatEther(resp.result)
+        console.log('updateBalance result', activeWallet, resp.result)
       } else {
         console.log('updateBalance response', resp)
       }
@@ -99,6 +102,21 @@ export default {
       } else {
         console.log('updatePrice response', resp)
       }
+    },
+    *getTxList({ payload }, { select, put, call }) {
+      const { forced = false } = payload
+      const { network, activeWallet, txLists } = yield select(state => state.app)
+      if (!forced && txLists[activeWallet].length > 0) return
+      console.log('get tx list ', activeWallet)
+      const resp = yield call(txListForAddress, [network, activeWallet])
+      // console.log('resp', resp)
+      if (resp.message === 'OK') {
+        txLists[activeWallet] = resp.result
+        // console.log('get tx list result', resp.result)
+      } else {
+        console.log('get tx list response', resp)
+      }
+      yield put({ type: 'updateState', payload: { txLists } })
     },
   },
 }

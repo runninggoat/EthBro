@@ -32,6 +32,10 @@ export const ethBlockNumber = async params => {
   return resp
 }
 
+/**
+ * 
+ * @param {Array} params network
+ */
 export const ethBlance = async params => {
   // console.log('send ethBlance request...', params[0], params[1])
   let url = createGetUrl(host[params[0]], {
@@ -41,7 +45,7 @@ export const ethBlance = async params => {
     tag: 'latest',
     apikey: apiKey,
   })
-  // console.log('request url', url)
+  console.log('request url', url)
   let resp = null
   try {
     resp = await fetch(url)
@@ -52,12 +56,42 @@ export const ethBlance = async params => {
   return resp
 }
 
+/**
+ * 
+ * @param {Array} params network, address
+ */
 export const ethLastPrice = async params => {
   let url = createGetUrl(host[params[0]], {
     module: 'stats',
     action: 'ethprice',
     apikey: apiKey,
   })
+  console.log('request url', url)
+  let resp = null
+  try {
+    resp = await fetch(url)
+    resp = await resp.json()
+  } catch (e) {
+    throw e
+  }
+  return resp
+}
+
+/**
+ * 
+ * @param {Array} params network, address
+ */
+export const txListForAddress = async params => {
+  let url = createGetUrl(host[params[0]], {
+    module: 'account',
+    action: 'txlist',
+    address: params[1],
+    startblock: '0',
+    endblock: '99999999',
+    sort: 'desc',
+    apikey: apiKey,
+  })
+  console.log('request url', url)
   let resp = null
   try {
     resp = await fetch(url)

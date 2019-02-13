@@ -18,8 +18,7 @@ class Balance extends Component {
   }
 
   render() {
-    let { network, address, balance } = this.props
-    if (!network) network = ROPSTEN
+    let { network = ROPSTEN, address = '', balance = 0, usdPrice = 1 } = this.props
     let networkName = NetworkName[network]
     const { ETH, qrCode } = Images
     return (
@@ -36,6 +35,11 @@ class Balance extends Component {
         <Text style={{ fontSize: 30, textAlign: 'center', color: '#000' }}>
           {parseFloat(balance).toFixed(4)}
         </Text>
+        <View>
+          <Text style={{ textAlign: 'center', fontSize: 14 }}>
+            {`= ${(balance * usdPrice).toFixed(2)} ($)`}
+          </Text>
+        </View>
         <View style={styles.addressRow}>
           <Text style={{ fontSize: 16, marginRight: 15, flex: 1 }}>
             {'地址:'}

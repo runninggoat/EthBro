@@ -21,6 +21,13 @@ const codePushOption = {
   },
 }
 
-AppRegistry.registerComponent('EthBro', () => codePush(codePushOption)(App))
+let app
+if (__DEV__) {
+  app = () => App
+} else {
+  app = () => codePush(codePushOption)(App)
+}
+
+AppRegistry.registerComponent('EthBro', app)
 
 // AppRegistry.registerComponent('EthBro', () => App)

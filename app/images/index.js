@@ -3,6 +3,7 @@ import copy from './copy.png'
 import delete_ from './delete.png'
 import edit from './edit.png'
 import ETH from './ETH.png'
+import forward from './forward.png'
 import photoCamera from './photoCamera.png'
 import qrCode from './qrCode.png'
 import save from './save.png'
@@ -19,6 +20,7 @@ export default {
   delete_,
   edit,
   ETH,
+  forward,
   photoCamera,
   qrCode,
   save,

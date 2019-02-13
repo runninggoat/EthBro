@@ -11,6 +11,7 @@ import WalletHome from './containers/walletHome'
 import Settings from './containers/settings'
 import ImportWallet from './containers/importWallet'
 import WalletList from './containers/walletList'
+import TxDetail from './containers/txDetail'
 
 const AppNavigator = createBottomTabNavigator(
   {
@@ -33,6 +34,7 @@ const MainNavigator = createStackNavigator(
     AppNavigator: { screen: AppNavigator },
     ImportWallet: { screen: ImportWallet },
     WalletList: { screen: WalletList },
+    TxDetail: { screen: TxDetail },
   },
   {
     headerMode: 'screen',
