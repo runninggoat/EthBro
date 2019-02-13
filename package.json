@@ -17,6 +17,7 @@
     "react-native": "0.58.3",
     "react-native-code-push": "^5.5.2",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-sentry": "^0.41.1",
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
     "redux-persist": "^5.10.0"

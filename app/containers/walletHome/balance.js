@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
+import { Sentry } from 'react-native-sentry'
 import { ROPSTEN, NetworkName } from '../../services/etherscan'
 import Images from '../../images'
 import { deviceWidth } from '../../utils'
@@ -15,6 +16,13 @@ class Balance extends Component {
   _goToWalletList = () => {
     const { navigation } = this.props
     navigation.dispatch(NavigationActions.navigate({ routeName: 'WalletList' }))
+  }
+
+  _sendErrorTest = () => {
+    let err = new Error('Error test')
+    Sentry.captureException(err)
+    Sentry.captureMessage('hello, sentry')
+    // console.log('send an error to sentry', err)
   }
 
   render() {
