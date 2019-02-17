@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-native start --reset-cache",
     "test": "jest",
-    "ra": "react-native run-android"
+    "ra": "react-native run-android",
+    "build:android": "cd ./android/ && ./gradlew clean && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.3.0",
